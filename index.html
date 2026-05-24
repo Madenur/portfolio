@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Professional Portfolio - Full-Stack Builder & Data Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #7c3aed;
+            --primary-light: #a78bfa;
+            --dark-text: #1f2937;
+            --light-bg: #f9fafb;
+            --border-color: #e5e7eb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: #6d28d9;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark-text);
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #4b5563;
+            line-height: 1.8;
+        }
+
+        .strengths {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .strengths li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #4b5563;
+        }
+
+        .strengths li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Projects Section */
+        .projects-filter {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--border-color);
+            background-color: white;
+            color: var(--dark-text);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background-color: rgba(124, 58, 237, 0.05);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background-color: rgba(124, 58, 237, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .project-tag.sold {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+        }
+
+        .project-card p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badge {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        .project-links a,
+        .project-links button {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .project-links a:hover,
+        .project-links button:hover {
+            background-color: #6d28d9;
+            transform: translateY(-1px);
+        }
+
+        .project-links a.secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .project-links a.secondary:hover {
+            background-color: rgba(124, 58, 237, 0.1);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--border-color);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            animation: slideUp 0.6s ease;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: 50%;
+            padding-right: 3rem;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            margin-right: 0;
+            padding-left: 3rem;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background-color: var(--primary-color);
+            border: 3px solid white;
+            border-radius: 50%;
+            top: 2rem;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+        }
+
+        .timeline-content {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            border-left: none;
+            border-right: 3px solid var(--primary-color);
+        }
+
+        .timeline-content h3 {
+            color: var(--dark-text);
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content .date {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            animation: slideUp 0.6s ease;
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .skill-item span {
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* CV Upload Section */
+        .cv-section {
+            background-color: var(--light-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 2px dashed var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .cv-section.dragover {
+            border-color: var(--primary-color);
+            background-color: rgba(124, 58, 237, 0.05);
+        }
+
+        .cv-upload {
+            margin: 2rem 0;
+        }
+
+        .cv-upload input {
+            display: none;
+        }
+
+        .upload-label {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .upload-label:hover {
+            background-color: #6d28d9;
+            transform: translateY(-2px);
+        }
+
+        .cv-preview {
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .cv-preview.show {
+            display: block;
+        }
+
+        .cv-preview img {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1.5rem;
+        }
+
+        .cv-preview-info {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .cv-preview-info p {
+            color: #6b7280;
+            margin: 0.5rem 0;
+        }
+
+        .cv-download-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cv-download-btn:hover {
+            background-color: #6d28d9;
+            transform: translateY(-1px);
+        }
+
+        /* Contact Section */
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--dark-text);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover .contact-icon {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            text-align: center;
+            color: #6b7280;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background-color: white;
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem;
+                animation: slideDown 0.3s ease;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 1rem;
+                display: block;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 2rem;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-dot {
+                left: -8px;
+            }
+
+            .timeline-content {
+                border-left: 3px solid var(--primary-color);
+                border-right: none;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Full-stack Builder</h1>
+        <div class="tagline">Data Engineer in Progress</div>
+        <p class="subtitle">Built 8+ hackathon winners → Startup co-founder → Backend engineer → Innovation manager → Mastering data engineering</p>
+        <button class="cta-button" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">View My Work</button>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>The Journey</h3>
+                <p>I'm a technology innovator with a diverse background spanning hackathons, startups, backend engineering, and data analytics. My career has been defined by building solutions that matter—from rapid prototyping at hackathons to scaling systems in production environments.</p>
+                <p>Currently pursuing my Master's in Data Engineering at the University of Glasgow while working on innovative projects that bridge software development and data science.</p>
+                <ul class="strengths">
+                    <li>Full-stack architecture & backend optimization</li>
+                    <li>Data pipeline design & analytics</li>
+                    <li>Startup growth & product innovation</li>
+                    <li>Team leadership & mentorship</li>
+                </ul>
+            </div>
+            <div class="about-text" style="text-align: center;">
+                <h3>Quick Facts</h3>
+                <p style="margin-top: 2rem;">
+                    <strong style="font-size: 2.5rem; color: var(--primary-color);">8+</strong>
+                    <br>Hackathon Wins
+                </p>
+                <p style="margin-top: 2rem;">
+                    <strong style="font-size: 2.5rem; color: var(--primary-color);">2</strong>
+                    <br>Startup Competitions
+                </p>
+                <p style="margin-top: 2rem;">
+                    <strong style="font-size: 2.5rem; color: var(--primary-color);">5+</strong>
+                    <br>Years Experience
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="hackathon">Hackathons</button>
+            <button class="filter-btn" data-filter="startup">Startups</button>
+            <button class="filter-btn" data-filter="professional">Professional</button>
+            <button class="filter-btn" data-filter="sold">Sold Projects</button>
+        </div>
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Projects will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Career Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Hackathon Grand Prize Winner</h3>
+                    <div class="date">2024</div>
+                    <p>Won 1st place in AI/ML track with innovative machine learning solution</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Innovation Manager</h3>
+                    <div class="date">2023 - Present</div>
+                    <p>Leading innovation initiatives and emerging tech adoption</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Backend Engineer</h3>
+                    <div class="date">2021 - 2023</div>
+                    <p>Built scalable microservices and data pipelines at scale</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Startup Co-Founder</h3>
+                    <div class="date">2020 - 2021</div>
+                    <p>Launched SaaS platform with 100+ active users</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Bachelor's Degree - IT</h3>
+                    <div class="date">2019</div>
+                    <p>First-class honors in Information Technology</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Master's in Data Engineering</h3>
+                    <div class="date">2023 - Present</div>
+                    <p>University of Glasgow - Advanced data systems & analytics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Backend</h3>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Python</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Go</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Node.js</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>FastAPI</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Data & Analytics</h3>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>SQL</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Apache Spark</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Apache Airflow</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Pandas</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Frontend</h3>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>React</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>HTML/CSS</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Tailwind CSS</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>DevOps & Tools</h3>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Docker</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Kubernetes</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>AWS</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Git</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>AI/ML</h3>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>TensorFlow</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>PyTorch</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Scikit-Learn</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>LLMs</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Databases</h3>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>PostgreSQL</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>MongoDB</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>Redis</span>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-dot"></div>
+                    <span>DynamoDB</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv">
+        <h2>Curriculum Vitae</h2>
+        <div class="cv-section" id="cvSection">
+            <h3>Upload Your CV</h3>
+            <p style="color: #6b7280; margin-bottom: 1.5rem;">Drag and drop your CV (PDF or Image) or click to select</p>
+            <div class="cv-upload">
+                <label for="cvInput" class="upload-label">Choose File</label>
+                <input type="file" id="cvInput" accept=".pdf,.png,.jpg,.jpeg,.gif" />
+            </div>
+            <div class="cv-preview" id="cvPreview">
+                <div class="cv-preview-info">
+                    <p><strong>File Name:</strong> <span id="cvFileName">-</span></p>
+                    <p><strong>File Size:</strong> <span id="cvFileSize">-</span></p>
+                    <p><strong>Uploaded:</strong> <span id="cvUploadTime">-</span></p>
+                </div>
+                <img id="cvImage" src="" alt="CV Preview" style="display: none;" />
+                <button class="cv-download-btn" id="cvDownloadBtn">Download CV</button>
+                <button class="cv-download-btn" style="background-color: #ef4444; margin-left: 1rem;" onclick="deleteCv()">Remove CV</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Let's Connect</h2>
+        <p style="text-align: center; color: #6b7280; margin-bottom: 3rem; font-size: 1.1rem;">Reach out for collaborations, inquiries, or just to chat about tech!</p>
+        <div class="contact-links">
+            <a href="mailto:your.email@example.com" class="contact-link">
+                <div class="contact-icon">✉️</div>
+                <span>Email</span>
+            </a>
+            <a href="https://github.com/madenur" class="contact-link" target="_blank">
+                <div class="contact-icon">💻</div>
+                <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com/in/madenur" class="contact-link" target="_blank">
+                <div class="contact-icon">🔗</div>
+                <span>LinkedIn</span>
+            </a>
+            <a href="https://twitter.com/madenur" class="contact-link" target="_blank">
+                <div class="contact-icon">𝕏</div>
+                <span>Twitter</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Tech Professional Portfolio. Built with ❤️ using HTML, CSS & JavaScript.</p>
+    </footer>
+
+    <script>
+        // Projects Data
+        const projects = [
+            {
+                id: 1,
+                name: "AI-Powered Data Analytics Dashboard",
+                description: "Real-time analytics platform with ML-driven insights and predictive modeling",
+                category: "professional",
+                tech: ["Python", "React", "PostgreSQL", "TensorFlow"],
+                github: "https://github.com/madenur/analytics-dashboard",
+                demo: "https://analytics-demo.example.com",
+                impact: "100+ users, 50K+ monthly queries processed"
+            },
+            {
+                id: 2,
+                name: "Hackathon Winner: Smart City IoT",
+                description: "IoT data processing system for real-time city traffic optimization",
+                category: "hackathon",
+                tech: ["Go", "Apache Kafka", "MongoDB", "React"],
+                github: "https://github.com/madenur/smart-city-iot",
+                demo: "https://smartcity-demo.example.com",
+                impact: "Won 1st place at TechCrunch Disrupt 2024"
+            },
+            {
+                id: 3,
+                name: "Microservices Architecture Framework",
+                description: "Scalable microservices boilerplate with service mesh and monitoring",
+                category: "professional",
+                tech: ["Go", "Kubernetes", "Docker", "Prometheus"],
+                github: "https://github.com/madenur/microservices-framework",
+                impact: "Used by 20+ internal teams, reduced deployment time by 60%"
+            },
+            {
+                id: 4,
+                name: "SaaS Startup - DataSync Pro",
+                description: "Cloud-native data synchronization platform for enterprises",
+                category: "sold",
+                tech: ["Python", "AWS", "PostgreSQL", "React"],
+                demo: "https://datasync-pro.example.com",
+                impact: "Acquired by DataFlow Inc. - 500 paying customers"
+            },
+            {
+                id: 5,
+                name: "Hackathon Winner: ML Model Serving",
+                description: "Efficient model serving platform with auto-scaling and monitoring",
+                category: "hackathon",
+                tech: ["Python", "FastAPI", "Docker", "Redis"],
+                github: "https://github.com/madenur/ml-model-serving",
+                impact: "Won 2nd place at AI Innovation Challenge 2024"
+            },
+            {
+                id: 6,
+                name: "E-Commerce Platform Optimization",
+                description: "Backend optimization reducing latency by 70% and improving conversion",
+                category: "professional",
+                tech: ["Go", "PostgreSQL", "Redis", "AWS"],
+                impact: "20M+ annual transactions processed"
+            },
+            {
+                id: 7,
+                name: "Sold Project: Real-time Analytics SaaS",
+                description: "Comprehensive analytics platform for startups and SMEs",
+                category: "sold",
+                tech: ["Python", "Apache Spark", "React", "AWS"],
+                impact: "Acquired by Mixpanel - $2M valuation"
+            },
+            {
+                id: 8,
+                name: "Hackathon Winner: Climate Data Platform",
+                description: "Environmental data aggregation and visualization using AI insights",
+                category: "hackathon",
+                tech: ["Python", "TensorFlow", "D3.js", "PostgreSQL"],
+                github: "https://github.com/madenur/climate-platform",
+                impact: "Won 1st place at GlobalTech Hackathon 2023"
+            },
+            {
+                id: 9,
+                name: "Startup: AI Interview Assistant",
+                description: "AI-powered platform for conducting and analyzing technical interviews",
+                category: "startup",
+                tech: ["Node.js", "React", "OpenAI API", "MongoDB"],
+                demo: "https://ai-interview.example.com",
+                impact: "100+ companies adopted, 10K+ interviews conducted"
+            }
+        ];
+
+        // Initialize Projects
+        function initializeProjects() {
+            const grid = document.getElementById('projectsGrid');
+            grid.innerHTML = '';
+            projects.forEach(project => {
+                const card = createProjectCard(project);
+                grid.appendChild(card);
+            });
+        }
+
+        function createProjectCard(project) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.setAttribute('data-category', project.category);
+
+            let techStackHtml = project.tech.map(tech => `<div class="tech-badge">${tech}</div>`).join('');
+            
+            const tagClass = project.category === 'sold' ? 'sold' : '';
+            const tagText = project.category === 'sold' ? '💰 SOLD' : project.category.toUpperCase();
+
+            let linksHtml = '';
+            if (project.github) {
+                linksHtml += `<a href="${project.github}" target="_blank">GitHub</a>`;
+            }
+            if (project.demo) {
+                linksHtml += `<a href="${project.demo}" target="_blank" class="secondary">Live Demo</a>`;
+            }
+
+            card.innerHTML = `
+                <div class="project-tag ${tagClass}">${tagText}</div>
+                <h3>${project.name}</h3>
+                <p>${project.description}</p>
+                <div class="tech-stack">${techStackHtml}</div>
+                <p style="color: var(--primary-color); font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem;">📊 ${project.impact}</p>
+                <div class="project-links">${linksHtml}</div>
+            `;
+
+            return card;
+        }
+
+        // Filter Projects
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                    setTimeout(() => {
+                        card.style.animation = 'none';
+                        setTimeout(() => {
+                            card.style.animation = 'slideUp 0.6s ease';
+                        }, 10);
+                    }, 10);
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Filter Button Events
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                filterProjects(e.target.getAttribute('data-filter'));
+            });
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // CV Upload Handler
+        const cvInput = document.getElementById('cvInput');
+        const cvSection = document.getElementById('cvSection');
+        const cvPreview = document.getElementById('cvPreview');
+
+        cvInput.addEventListener('change', handleCvUpload);
+
+        cvSection.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            cvSection.classList.add('dragover');
+        });
+
+        cvSection.addEventListener('dragleave', () => {
+            cvSection.classList.remove('dragover');
+        });
+
+        cvSection.addEventListener('drop', (e) => {
+            e.preventDefault();
+            cvSection.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length) {
+                cvInput.files = files;
+                handleCvUpload({ target: { files } });
+            }
+        });
+
+        function handleCvUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            const uploadTime = new Date().toLocaleString();
+
+            reader.onload = () => {
+                // Store CV data in localStorage
+                localStorage.setItem('cvData', JSON.stringify({
+                    name: file.name,
+                    size: (file.size / 1024).toFixed(2) + ' KB',
+                    time: uploadTime,
+                    data: reader.result,
+                    type: file.type
+                }));
+
+                displayCvPreview(file, reader.result, uploadTime);
+            };
+
+            if (file.type.startsWith('image/')) {
+                reader.readAsDataURL(file);
+            } else if (file.type === 'application/pdf') {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function displayCvPreview(file, data, uploadTime) {
+            document.getElementById('cvFileName').textContent = file.name;
+            document.getElementById('cvFileSize').textContent = (file.size / 1024).toFixed(2) + ' KB';
+            document.getElementById('cvUploadTime').textContent = uploadTime;
+
+            const cvImage = document.getElementById('cvImage');
+            if (file.type.startsWith('image/')) {
+                cvImage.src = data;
+                cvImage.style.display = 'block';
+            } else {
+                cvImage.style.display = 'none';
+            }
+
+            const downloadBtn = document.getElementById('cvDownloadBtn');
+            downloadBtn.onclick = () => downloadCv(file.name, data);
+
+            cvPreview.classList.add('show');
+        }
+
+        function downloadCv(filename, data) {
+            const link = document.createElement('a');
+            link.href = data;
+            link.download = filename;
+            link.click();
+        }
+
+        function deleteCv() {
+            localStorage.removeItem('cvData');
+            cvInput.value = '';
+            cvPreview.classList.remove('show');
+        }
+
+        // Load CV from localStorage on page load
+        window.addEventListener('load', () => {
+            const savedCv = localStorage.getItem('cvData');
+            if (savedCv) {
+                const cvData = JSON.parse(savedCv);
+                document.getElementById('cvFileName').textContent = cvData.name;
+                document.getElementById('cvFileSize').textContent = cvData.size;
+                document.getElementById('cvUploadTime').textContent = cvData.time;
+
+                if (cvData.type.startsWith('image/')) {
+                    const cvImage = document.getElementById('cvImage');
+                    cvImage.src = cvData.data;
+                    cvImage.style.display = 'block';
+                }
+
+                const downloadBtn = document.getElementById('cvDownloadBtn');
+                downloadBtn.onclick = () => downloadCv(cvData.name, cvData.data);
+
+                cvPreview.classList.add('show');
+            }
+
+            initializeProjects();
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-category').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
